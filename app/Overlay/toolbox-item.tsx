@@ -9,7 +9,7 @@ const ToolboxItem: React.FC<{
   onRemove: () => void;
   isEditing: boolean;
 }> = ({ widget, onEdit, onRemove, isEditing }) => {
-  const [drag] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: "WIDGET",
     item: widget,
     collect: (monitor) => ({
@@ -21,10 +21,11 @@ const ToolboxItem: React.FC<{
   return (
     <li
       ref={drag as unknown as React.LegacyRef<HTMLLIElement>}
-      className={`flex items-center justify-between border p-1 text-white hover:bg-gray-600 bg-gray-700 rounded-lg shadow-md transition duration-200  ${
-        isEditing ? "bg-blue-300" : ""
-      } 
-      ${widget.isDropped ? "border-blue-500" : ""}`}
+      className={`flex items-center justify-between border p-1 text-white hover:bg-gray-600 bg-gray-700 rounded-lg shadow-md transition duration-200  
+      ${isEditing ? "bg-blue-300" : ""} 
+      ${isDragging ? "opacity-50" : ""} 
+      ${widget.isDropped ? "border-blue-500" : ""}
+      `}
     >
       <div className="flex flex-col items-center gap-2">
         <MonitorStop className="text-gray-400" />
