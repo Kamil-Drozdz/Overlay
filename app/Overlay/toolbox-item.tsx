@@ -9,7 +9,7 @@ const ToolboxItem: React.FC<{
   onRemove: () => void;
   isEditing: boolean;
 }> = ({ widget, onEdit, onRemove, isEditing }) => {
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [drag] = useDrag(() => ({
     type: "WIDGET",
     item: widget,
     collect: (monitor) => ({

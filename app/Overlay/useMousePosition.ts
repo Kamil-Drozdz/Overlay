@@ -9,11 +9,12 @@ const useMousePosition = (containerRef: React.RefObject<HTMLElement>) => {
   const [mousePosition, setMousePosition] = useState<MousePosition | null>(
     null
   );
+  const ref = containerRef.current;
 
   const updateMousePosition = useCallback(
     (ev: MouseEvent) => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
+      if (ref) {
+        const rect = ref.getBoundingClientRect();
         setMousePosition({
           x: Math.round(ev.clientX - rect.left),
           y: Math.round(ev.clientY - rect.top),
@@ -24,16 +25,13 @@ const useMousePosition = (containerRef: React.RefObject<HTMLElement>) => {
   );
 
   useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.addEventListener("mousemove", updateMousePosition);
+    if (ref) {
+      ref.addEventListener("mousemove", updateMousePosition);
     }
 
     return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener(
-          "mousemove",
-          updateMousePosition
-        );
+      if (ref) {
+        ref.removeEventListener("mousemove", updateMousePosition);
       }
     };
   }, [containerRef]);

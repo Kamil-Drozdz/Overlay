@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { saveWidget } from "./save-widget";
+// import { saveWidget } from "./save-widget";
 import { WidgetProps, widgetSchema } from "./widget-schema";
 
 interface WidgetFormProps {
@@ -28,7 +28,7 @@ const WidgetForm: React.FC<WidgetFormProps> = ({ widget, onSubmit }) => {
 
   const onSubmitForm = async (data: WidgetProps) => {
     try {
-      await saveWidget(data, "tede");
+      // await saveWidget(data, "tede");
       onSubmit(data);
     } catch (error) {
       console.error("Błąd podczas zapisywania widgetu:", error);

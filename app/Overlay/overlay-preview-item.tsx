@@ -43,11 +43,11 @@ function OverlayPreviewItem({
         });
       }}
       onResize={(e, direction, ref, delta, position) => {
-        let newWidth = Math.max(
+        const newWidth = Math.max(
           minWidth,
           Math.round(parseFloat(ref.style.width))
         );
-        let newHeight = Math.max(
+        const newHeight = Math.max(
           minHeight,
           Math.round(parseFloat(ref.style.height))
         );

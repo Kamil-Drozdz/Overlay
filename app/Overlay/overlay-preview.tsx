@@ -61,7 +61,7 @@ const OverlayPreview: React.FC<OverlayPreviewProps> = ({
           } as MouseEvent);
         }
       },
-      drop: (item: WidgetExtended, monitor) => {
+      drop: (item: WidgetExtended) => {
         if (mousePosition && containerRef.current) {
           updateWidgetPositionAndSize(item.id, {
             x: mousePosition.x,
@@ -78,11 +78,11 @@ const OverlayPreview: React.FC<OverlayPreviewProps> = ({
 
   const adjustWidgetPosition = useCallback(
     (widget: WidgetProps) => {
-      let newX = Math.min(
+      const newX = Math.min(
         Math.max(0, widget.x),
         dimensions.width - widget.width
       );
-      let newY = Math.min(
+      const newY = Math.min(
         Math.max(0, widget.y),
         dimensions.height - widget.height - 20
       );
@@ -108,7 +108,7 @@ const OverlayPreview: React.FC<OverlayPreviewProps> = ({
         });
       }
     },
-    [dimensions, updateWidgetPositionAndSize, device]
+    [dimensions, updateWidgetPositionAndSize]
   );
 
   useEffect(() => {
@@ -132,11 +132,11 @@ const OverlayPreview: React.FC<OverlayPreviewProps> = ({
   }, [device, widgets, adjustWidgetPosition]);
 
   const scale = dimensions.width > 1000 ? 0.6 : 1;
-  const multiplier = 1 / scale;
+  // const multiplier = 1 / scale;
 
-  // TODO: dodać skalowanie do wymiarów wyjsciowych
-  // const newX = x * multiplier;
-  // const newY = y * multiplier;
+  // // TODO: dodać skalowanie do wymiarów wyjsciowych
+  // // const newX = x * multiplier;
+  // // const newY = y * multiplier;
 
   return (
     <div className="w-full flex flex-col justify-center items-center relative overflow-hidden bg-gray-700">

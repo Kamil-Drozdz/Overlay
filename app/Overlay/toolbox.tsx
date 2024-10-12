@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { WidgetProps } from "./widget-schema";
+import React from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import ToolboxItem from "./toolbox-item";
 import ToolboxDeviceSelector from "./toolbox-device-selector";
+import { WidgetExtended } from "./overlay-configurator";
 
 interface ToolboxProps {
   onAddWidget: (widgetType: string) => void;
-  widgets: WidgetProps[];
-  onEditWidget: (widget: WidgetProps) => void;
+  widgets: WidgetExtended[];
+  onEditWidget: (widget: WidgetExtended) => void;
   onRemoveWidget: (widgetId: string) => void;
   editingWidgetId: string | null;
   onDeviceChange: (device: string) => void;
